@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Georgia', 'Times New Roman', serif;
-            background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%) fixed;
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -81,7 +81,8 @@
             height: 2px;
             background: linear-gradient(90deg, transparent, #FFF8DC, transparent);
             opacity: 0.3;
-            animation: slide 12s ease-in-out infinite;
+            animation: slide 10s linear infinite;
+            transform-origin: center;
         }
 
         .cutting-path:nth-child(4) {
@@ -316,6 +317,9 @@
     <div class="craft-element gear"></div>
     <div class="craft-element gear"></div>
     <div class="craft-element gear"></div>
+    <div class="cutting-path"></div>
+    <div class="cutting-path"></div>
+    <div class="cutting-path"></div>
     <div class="cutting-path"></div>
     <div class="cutting-path"></div>
 </div>
