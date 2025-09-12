@@ -13,6 +13,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Update packages and install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
     tigervnc-standalone-server \
     openbox \
     menu \
@@ -34,6 +35,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN echo "sv_SE.UTF-8 UTF-8" >> /etc/locale.gen && \
     locale-gen
 
+# Download and install FileBrowser for ARM64 (Raspberry Pi)
+RUN curl -fsSL https://github.com/filebrowser/filebrowser/releases/latest/download/linux-arm64-filebrowser.tar.gz \
+    | tar -C /usr/local/bin -xzv filebrowser
+
 # Clone noVNC and create an index.html that auto-connects
 RUN git clone https://github.com/novnc/noVNC.git /opt/novnc && \
     echo '<meta http-equiv="refresh" content="0; url=vnc.html?autoconnect=true&resize=remote">' > /opt/novnc/index.html
@@ -47,4 +52,5 @@ COPY xstartup.sh /usr/local/bin/xstartup.sh
 RUN chmod +x /usr/local/bin/xstartup.sh
 
 EXPOSE 6080
+EXPOSE 8080
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

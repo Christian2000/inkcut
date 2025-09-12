@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Start FileBrowser on port 8080, managing the /root/Documents folder
+# This is the same folder you share with the Docker -v flag.
+filebrowser --address 0.0.0.0 --port 8080 --root /root/Documents --database /root/Documents/filebrowser.db &
+
 # Start the noVNC WebSocket proxy in the background
 websockify --web /opt/novnc 6080 localhost:5901 &
 
