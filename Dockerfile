@@ -13,6 +13,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Update packages and install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    nginx\
     curl \
     tigervnc-standalone-server \
     openbox \
@@ -51,6 +52,8 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 COPY xstartup.sh /usr/local/bin/xstartup.sh
 RUN chmod +x /usr/local/bin/xstartup.sh
 
-EXPOSE 6080
-EXPOSE 8080
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY html/* /var/www/html/
+
+EXPOSE 80
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

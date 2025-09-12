@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkcut - Uppsala Makerspace</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated background elements - craft-inspired */
+        .bg-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .craft-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .gear {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #654321;
+            border-radius: 50%;
+            background: radial-gradient(circle, #8B4513, #654321);
+            animation: spin 20s linear infinite;
+        }
+
+        .gear::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #2F1B14;
+        }
+
+        .craft-element:nth-child(1) {
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .craft-element:nth-child(2) {
+            bottom: 20%;
+            right: 15%;
+            animation-delay: -5s;
+        }
+
+        .craft-element:nth-child(3) {
+            top: 60%;
+            left: 5%;
+            animation-delay: -10s;
+        }
+
+        .cutting-path {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FFF8DC, transparent);
+            opacity: 0.3;
+            animation: slide 12s ease-in-out infinite;
+        }
+
+        .cutting-path:nth-child(4) {
+            top: 25%;
+            width: 300px;
+            left: -300px;
+        }
+
+        .cutting-path:nth-child(5) {
+            bottom: 35%;
+            width: 400px;
+            right: -400px;
+            animation-delay: -6s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes slide {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(calc(100vw + 400px)); }
+        }
+
+        .container {
+            background: rgba(245, 245, 220, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 50px 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            max-width: 520px;
+            width: 90%;
+            border: 2px solid rgba(139, 69, 19, 0.3);
+        }
+
+        .makerspace-header {
+            margin-bottom: 35px;
+        }
+
+        .craft-subtitle {
+            font-size: 1rem;
+            color: #654321;
+            font-style: italic;
+            margin-bottom: 35px;
+        }
+
+        .tool-description {
+            background: rgba(139, 69, 19, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 4px solid #8B4513;
+        }
+        .tool-description p {
+            padding: 8px;
+        }
+
+        .tool-description h3 {
+            color: #2F1B14;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-family: 'Georgia', serif;
+        }
+
+        .tool-description p {
+            color: #654321;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: linear-gradient(135deg, #8B4513, #654321);
+            color: #FFF8DC;
+            padding: 18px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Georgia', serif;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(139, 69, 19, 0.4);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(101, 67, 33, 0.5);
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 248, 220, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .button:hover {
+            transform: translateY(-3px) rotate(1deg);
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.5);
+            background: linear-gradient(135deg, #A0522D, #8B4513);
+        }
+
+        .button:hover::before {
+            left: 100%;
+        }
+
+        .button.secondary {
+            background: linear-gradient(135deg, #CD853F, #A0522D);
+            box-shadow: 0 6px 15px rgba(205, 133, 63, 0.4);
+        }
+
+        .button.secondary:hover {
+            background: linear-gradient(135deg, #D2691E, #CD853F);
+            box-shadow: 0 8px 25px rgba(205, 133, 63, 0.5);
+        }
+
+        .button-icon {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vinyl-cutter-icon {
+            width: 24px;
+            height: 24px;
+            border: 2px solid currentColor;
+            border-radius: 3px;
+            position: relative;
+            background: rgba(255, 248, 220, 0.2);
+        }
+
+        .vinyl-cutter-icon::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            border: 1px dashed currentColor;
+            border-radius: 1px;
+        }
+
+        .vinyl-cutter-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -2px;
+            right: -2px;
+            height: 2px;
+            background: currentColor;
+            transform: translateY(-50%) rotate(-15deg);
+        }
+
+        .upload-icon {
+            width: 24px;
+            height: 20px;
+            border: 2px solid currentColor;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            position: relative;
+            background: rgba(255, 248, 220, 0.2);
+        }
+
+        .upload-icon::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 10px solid currentColor;
+        }
+
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 35px 25px;
+                margin: 15px;
+            }
+
+            .buttons-container {
+                gap: 15px;
+            }
+
+            .button {
+                padding: 16px 24px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .craft-element,
+            .cutting-path,
+            .button::before {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="bg-decoration">
+    <div class="craft-element gear"></div>
+    <div class="craft-element gear"></div>
+    <div class="craft-element gear"></div>
+    <div class="cutting-path"></div>
+    <div class="cutting-path"></div>
+</div>
+
+<div class="container">
+    <div class="cork-header">
+        <div class="logo-container">
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="makerspace-header">
+            <h1 style="font-family: 'Georgia', serif; font-size: 2.4rem; color: #2F1B14; font-weight: bold; margin-bottom: 10px;">Inkcut</h1>
+            <p class="craft-subtitle">För Vevor vinylskärare</p>
+        </div>
+
+        <div class="tool-description">
+            <h3>Instruktioner</h3>
+            <p>Klicka på länken nedan för att komma till inckut.</p>
+            <p>För att överföra filer, gå först till "Ladda upp filer" nedan och ladda upp din fil, sedan hittar du den i Inkcut</p>
+            <p>Instruktioner för hur man använder Inkcut och vinylskäraren finns på <a href="https://wiki.uppsalamakerspace.se/Vinylsk%C3%A4rare_Vevor_KH-870A">wikin</a></p>
+        </div>
+
+        <div class="buttons-container">
+            <a href="/inkcut" class="button" target="_blank">
+                <div class="button-icon">
+                    <div class="vinyl-cutter-icon"></div>
+                </div>
+                Starta Inkcut
+            </a>
+            <a href="/upload" class="button secondary" target="_blank">
+                <div class="button-icon">
+                    <div class="upload-icon"></div>
+                </div>
+                Ladda upp filer
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
