@@ -27,4 +27,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ christian2000 }}:latest,ghcr.io/${{ github.repository }}:${{ github.sha }}
+          tags: ghcr.io/christian2000/inkcut:latest
