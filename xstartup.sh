@@ -7,4 +7,10 @@ unset DBUS_SESSION_BUS_ADDRESS
 openbox &
 
 # Start the main application in the foreground
-inkcut
+inkcut &
+
+sleep 5
+
+DISPLAY=:1 wmctrl -r Inkcut -b add,maximized_vert,maximized_horz
+
+wait

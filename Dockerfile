@@ -13,6 +13,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Update packages and install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    wmctrl\
     nginx\
     curl \
     tigervnc-standalone-server \
