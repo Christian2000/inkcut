@@ -76,6 +76,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY html/* /var/www/html/
 
 COPY inkcut.device.json /root/.config/inkcut/inkcut.device.json
+COPY inkcut.jobs.json /root/.config/inkcut/inkcut.jobs.json
 COPY QtProject.conf /root/.config/QtProject.conf
 
 EXPOSE 80

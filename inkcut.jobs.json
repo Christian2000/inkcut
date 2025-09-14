@@ -1,0 +1,212 @@
+{
+  "units": "cm",
+  "materials": {
+    "py/object": "atom.catom.atomlist",
+    "py/seq": []
+  },
+  "material": {
+    "py/reduce": [
+      "py/newobj",
+      {
+        "py/tuple": [
+          {
+            "py/type": "inkcut.job.models.Material"
+          }
+        ]
+      },
+      {
+        "size": {
+          "py/object": "atom.catom.atomclist",
+          "py/seq": [
+            1800.0,
+            2700.0
+          ]
+        },
+        "padding": {
+          "py/object": "atom.catom.atomclist",
+          "py/seq": [
+            10.0,
+            10.0,
+            10.0,
+            10.0
+          ]
+        },
+        "name": "",
+        "color": "#000000",
+        "is_roll": false,
+        "used": {
+          "py/object": "atom.catom.atomclist",
+          "py/seq": [
+            0.0,
+            0.0
+          ]
+        },
+        "cost": 1.0,
+        "use_force": false,
+        "use_speed": false,
+        "force": 10,
+        "speed": 10
+      }
+    ]
+  },
+  "jobs": {
+    "py/object": "atom.catom.atomlist",
+    "py/seq": []
+  },
+  "job": {
+    "py/reduce": [
+      "py/newobj",
+      {
+        "py/tuple": [
+          {
+            "py/type": "inkcut.job.models.Job"
+          }
+        ]
+      },
+      {
+        "material": {
+          "py/id": 2
+        },
+        "document": "/root/Documents/juni_dop_kuvert.svg",
+        "document_kwargs": {
+          "py/object": "atom.catom.atomdict",
+          "ids": null
+        },
+        "info": {
+          "py/reduce": [
+            "py/newobj",
+            {
+              "py/tuple": [
+                {
+                  "py/type": "inkcut.job.models.JobInfo"
+                }
+              ]
+            },
+            {
+              "status": "error",
+              "created": {
+                "py/object": "datetime.datetime",
+                "__reduce__": [
+                  {
+                    "py/type": "datetime.datetime"
+                  },
+                  [
+                    "B+kJDhIgHAuhzA=="
+                  ]
+                ]
+              },
+              "started": {
+                "py/object": "datetime.datetime",
+                "__reduce__": [
+                  {
+                    "py/type": "datetime.datetime"
+                  },
+                  [
+                    "B+kJDhIgOgEaBw=="
+                  ]
+                ]
+              },
+              "ended": {
+                "py/object": "datetime.datetime",
+                "__reduce__": [
+                  {
+                    "py/type": "datetime.datetime"
+                  },
+                  [
+                    "B+kJDhIhAwx38Q=="
+                  ]
+                ]
+              },
+              "progress": 20,
+              "data": "",
+              "count": 0,
+              "speed": 360.0,
+              "length": 8731.390571269141,
+              "duration": {
+                "py/reduce": [
+                  {
+                    "py/type": "datetime.timedelta"
+                  },
+                  {
+                    "py/tuple": [
+                      0,
+                      24,
+                      253863
+                    ]
+                  }
+                ]
+              },
+              "auto_approve": false
+            }
+          ]
+        },
+        "scale": {
+          "py/object": "atom.catom.atomclist",
+          "py/seq": [
+            1.0,
+            1.0
+          ]
+        },
+        "auto_scale": false,
+        "lock_scale": true,
+        "mirror": {
+          "py/object": "atom.catom.atomclist",
+          "py/seq": [
+            false,
+            false
+          ]
+        },
+        "align_center": {
+          "py/object": "atom.catom.atomclist",
+          "py/seq": [
+            false,
+            false
+          ]
+        },
+        "auto_shift": true,
+        "rotation": 0.0,
+        "auto_rotate": false,
+        "copies": 1,
+        "auto_copies": false,
+        "copy_spacing": {
+          "py/object": "atom.catom.atomclist",
+          "py/seq": [
+            10.0,
+            10.0
+          ]
+        },
+        "copy_weedline": false,
+        "copy_weedline_padding": {
+          "py/object": "atom.catom.atomclist",
+          "py/seq": [
+            10.0,
+            10.0,
+            10.0,
+            10.0
+          ]
+        },
+        "plot_weedline": false,
+        "plot_weedline_padding": {
+          "py/object": "atom.catom.atomclist",
+          "py/seq": [
+            10.0,
+            10.0,
+            10.0,
+            10.0
+          ]
+        },
+        "order": "Normal",
+        "feed_to_end": false,
+        "feed_after": 0.0
+      }
+    ]
+  },
+  "recent_documents": {
+    "py/object": "atom.catom.atomlist",
+    "py/seq": [
+    ]
+  },
+  "recent_document_limit": 10,
+  "saved_jobs_limit": 100,
+  "optimizer_timeout": 10.0
+}
