@@ -8,7 +8,7 @@ RUN apt update && apt install -y --no-install-recommends \
     libcups2-dev \
     build-essential
 
-RUN python3 -m venv /opt/venv
+RUN python3 -m venv /opt/venv --system-site-packages
 RUN /opt/venv/bin/pip install --upgrade pip setuptools wheel
 RUN /opt/venv/bin/pip install inkcut
 
@@ -43,6 +43,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /opt/venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
 
 # Generate the sv_SE.UTF-8 locale
 RUN echo "sv_SE.UTF-8 UTF-8" >> /etc/locale.gen && \

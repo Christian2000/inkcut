@@ -9,7 +9,7 @@ openbox &
 while true
 do
   # Start the main application in the foreground
-  DISPLAY=:1 inkcut &
+  DISPLAY=:1 inkcut > /proc/1/fd/1 2>/proc/1/fd/2 &
 
   echo "Waiting for Inkcut window..."
   for i in {1..100}; do # Timeout after 10 seconds (100 * 0.1s)
