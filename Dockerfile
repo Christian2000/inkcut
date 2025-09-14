@@ -76,6 +76,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY html/* /var/www/html/
 
 COPY inkcut.device.json /root/.config/inkcut/inkcut.device.json
+COPY QtProject.conf /root/.config/QtProject.conf
 
 EXPOSE 80
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
