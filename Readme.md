@@ -18,9 +18,30 @@ The setup script performs the following actions:
 4. Creates a Service: Sets up a systemd service that:
    - Automatically starts the Docker container on boot. 
    - Restarts the container if it ever fails. 
-   - Pulls the latest version of the image every time it starts. 
    - Grants the container access to the Raspberry Pi's USB ports using --privileged mode. 
    - Exposes the web interface on the Raspberry Pi's port 80.
+
+Updating to the latest image version
+---
+The image version is defined in /etc/systemd/system/inkcut-docker.service
+
+To change version, edit the line ExecStart=/usr/bin/docker run --name inkcut-container --privileged -p 80:80 ghcr.io/christian2000/inkcut:latest
+
+and change latest to the image tag you want to use. Then run
+
+   sudo systemctl daemon-reload
+
+and
+
+   sudo systemctl restart inkcut-docker.service
+
+To simply update to a newer "latest" tag, run
+
+   sudo docker pull ghcr.io/christian2000/inkcut:latest
+
+and wait patiently.
+
+Automatic updates on startup is disabled by default due to the increased startup time.
 
 Accessing the Application
 ---

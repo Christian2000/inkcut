@@ -48,8 +48,11 @@ RestartSec=10
 ExecStartPre=-/usr/bin/docker stop inkcut-container
 ExecStartPre=-/usr/bin/docker rm inkcut-container
 
-# Pull the latest image
-ExecStartPre=/usr/bin/docker pull ghcr.io/christian2000/inkcut:latest
+# Pull the latest image - uncomment the last line to automatically update on startup.
+# This is NOT recommended since startup then takes a long time.
+# To manually update run
+# sudo docker pull ghcr.io/christian2000/inkcut:latest
+# ExecStartPre=/usr/bin/docker pull ghcr.io/christian2000/inkcut:latest
 
 # Start the container
 # --privileged is used to grant access to all USB devices on the host
