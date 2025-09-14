@@ -1,4 +1,16 @@
-# Filename: Dockerfile
+FROM ubuntu:22.04 AS builder
+
+RUN apt update && apt install -y --no-install-recommends \
+    python3 \
+    python3-pip \
+    python3-dev \
+    python3-venv \
+    libcups2-dev \
+    build-essential
+
+RUN python3 -m venv /opt/venv
+RUN /opt/venv/bin/pip install --upgrade pip setuptools wheel
+RUN /opt/venv/bin/pip install inkcut
 
 FROM ubuntu:22.04
 
@@ -16,6 +28,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     wmctrl\
     nginx\
     curl \
+    ca-certificates \
     tigervnc-standalone-server \
     openbox \
     menu \
@@ -24,25 +37,28 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     locales \
     websockify \
     git \
-    python3 \
-    python3-pip \
-    python3-dev \
     libcups2-dev \
     libusb-1.0-0-dev \
-    build-essential \
     # We no longer need xvfb or x11vnc
     && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /opt/venv /opt/venv
 
 # Generate the sv_SE.UTF-8 locale
 RUN echo "sv_SE.UTF-8 UTF-8" >> /etc/locale.gen && \
     locale-gen
 
-RUN pip3 install --upgrade pip setuptools wheel
-RUN pip3 install inkcut
-
-# Download and install FileBrowser for ARM64 (Raspberry Pi)
-RUN curl -fsSL https://github.com/filebrowser/filebrowser/releases/latest/download/linux-armv7-filebrowser.tar.gz \
+# Download and install FileBrowser for the correct architecture
+ARG TARGETARCH
+RUN echo ${TARGETARCH}
+RUN case ${TARGETARCH} in \
+        "arm") FB_ARCH="armv7";; \
+        "arm64") FB_ARCH="arm64";; \
+        *) echo "Unsupported architecture: ${TARGETARCH}"; exit 1;; \
+    esac && \
+    curl -fsSL https://github.com/filebrowser/filebrowser/releases/latest/download/linux-${FB_ARCH}-filebrowser.tar.gz \
     | tar -C /usr/local/bin -xzv filebrowser
+
 
 # Clone noVNC and create an index.html that auto-connects
 RUN git clone https://github.com/novnc/noVNC.git /opt/novnc && \
