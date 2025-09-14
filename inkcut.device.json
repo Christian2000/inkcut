@@ -1,0 +1,236 @@
+{
+  "devices": {
+    "py/object": "atom.catom.atomlist",
+    "py/seq": [
+      {
+        "py/reduce": [
+          "py/newobj",
+          {
+            "py/tuple": [
+              {
+                "py/type": "inkcut.device.plugin.Device"
+              }
+            ]
+          },
+          {
+            "name": "Makerspace Vevor",
+            "manufacturer": "Inkcut",
+            "model": "Generic Driver",
+            "custom": true,
+            "area": {
+              "py/reduce": [
+                "py/newobj",
+                {
+                  "py/tuple": [
+                    {
+                      "py/type": "inkcut.core.models.AreaBase"
+                    }
+                  ]
+                },
+                {
+                  "size": {
+                    "py/object": "atom.catom.atomclist",
+                    "py/seq": [
+                      0.0,
+                      900000.0
+                    ]
+                  },
+                  "padding": {
+                    "py/object": "atom.catom.atomclist",
+                    "py/seq": [
+                      10.0,
+                      10.0,
+                      10.0,
+                      10.0
+                    ]
+                  }
+                }
+              ]
+            },
+            "declaration": {
+              "py/reduce": [
+                "py/newobj",
+                {
+                  "py/tuple": [
+                    {
+                      "py/type": "inkcut.device.extensions.DeviceDriver"
+                    }
+                  ]
+                },
+                {
+                  "name": "",
+                  "id": "Inkcut Generic Driver",
+                  "custom": true,
+                  "model": "Generic Driver",
+                  "manufacturer": "Inkcut",
+                  "width": "",
+                  "length": "",
+                  "factory": {
+                    "py/function": "inkcut.device.extensions.default_device_factory"
+                  },
+                  "protocols": {
+                    "py/object": "atom.catom.atomlist",
+                    "py/seq": []
+                  },
+                  "connections": {
+                    "py/object": "atom.catom.atomlist",
+                    "py/seq": []
+                  },
+                  "config_view": {
+                    "py/function": "inkcut.device.extensions.default_device_config_view_factory"
+                  },
+                  "default_config": {
+                    "py/object": "atom.catom.atomdict"
+                  }
+                }
+              ]
+            },
+            "filters": {
+              "py/object": "atom.catom.atomlist",
+              "py/seq": []
+            },
+            "connection": {
+              "py/reduce": [
+                "py/newobj",
+                {
+                  "py/tuple": [
+                    {
+                      "py/type": "inkcut.device.transports.parallelport.plugin.ParallelTransport"
+                    }
+                  ]
+                },
+                {
+                  "declaration": {
+                    "py/reduce": [
+                      "py/newobj",
+                      {
+                        "py/tuple": [
+                          {
+                            "py/type": "inkcut.device.extensions.DeviceTransport"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Parallel Port",
+                        "id": "parallel",
+                        "factory": {
+                          "py/function": "inkcut.device.transports.parallelport.manifest.transport_factory"
+                        },
+                        "config_view": {
+                          "py/function": "inkcut.device.transports.parallelport.manifest.config_view_factory"
+                        }
+                      }
+                    ]
+                  },
+                  "config": {
+                    "py/reduce": [
+                      "py/newobj",
+                      {
+                        "py/tuple": [
+                          {
+                            "py/type": "inkcut.device.transports.parallelport.plugin.ParallelConfig"
+                          }
+                        ]
+                      },
+                      {
+                        "device_path": "",
+                        "mode": "r+b"
+                      }
+                    ]
+                  },
+                  "protocol": {
+                    "py/reduce": [
+                      "py/newobj",
+                      {
+                        "py/tuple": [
+                          {
+                            "py/type": "inkcut.device.protocols.hpgl.HPGLProtocol"
+                          }
+                        ]
+                      },
+                      {
+                        "declaration": {
+                          "py/id": 22
+                        },
+                        "config": {
+                          "py/reduce": [
+                            "py/newobj",
+                            {
+                              "py/tuple": [
+                                {
+                                  "py/type": "inkcut.device.protocols.hpgl.HPGLConfig"
+                                }
+                              ]
+                            },
+                            {
+                              "pad": false
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "jobs": {
+              "py/object": "atom.catom.atomlist",
+              "py/seq": []
+            },
+            "queue": {
+              "py/object": "atom.catom.atomlist",
+              "py/seq": []
+            },
+            "config": {
+              "py/reduce": [
+                "py/newobj",
+                {
+                  "py/tuple": [
+                    {
+                      "py/type": "inkcut.device.plugin.DeviceConfig"
+                    }
+                  ]
+                },
+                {
+                  "step_time": 35.0,
+                  "custom_rate": -1.0,
+                  "step_size": 3.5433070866,
+                  "interpolate": false,
+                  "sample_rate": 100,
+                  "rotation": 0,
+                  "swap_xy": false,
+                  "mirror_y": false,
+                  "mirror_x": false,
+                  "scale": {
+                    "py/object": "atom.catom.atomclist",
+                    "py/seq": [
+                      1.0,
+                      1.0
+                    ]
+                  },
+                  "quality_factor": 1.0,
+                  "speed": 4.0,
+                  "speed_units": "in/s",
+                  "speed_enabled": false,
+                  "force": 40.0,
+                  "force_units": "g",
+                  "force_enabled": false,
+                  "absolute": false,
+                  "spooled": false,
+                  "test_mode": false,
+                  "commands_before": "",
+                  "commands_after": "",
+                  "commands_connect": "",
+                  "commands_disconnect": ""
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "device": {
+    "py/id": 31
+  }
+}

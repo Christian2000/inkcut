@@ -75,5 +75,7 @@ RUN chmod +x /usr/local/bin/xstartup.sh
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY html/* /var/www/html/
 
+COPY inkcut.device.json /root/.config/inkcut/inkcut.device.json
+
 EXPOSE 80
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

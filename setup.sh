@@ -7,8 +7,7 @@ echo "--- Starting Inkcut Docker Setup for Raspberry Pi ---"
 
 # --- 1. System Update ---
 echo "STEP 1: Updating system packages..."
-apt-get update
-DEBIAN_FRONTEND=noninteractive apt-get upgrade -y -o Dpkg::Options::="--force-confold"
+apt update && DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confold"
 
 # --- 2. Install Docker ---
 echo "STEP 2: Installing Docker..."
@@ -30,8 +29,12 @@ else
     echo "You may need to run 'sudo usermod -aG docker <your-user>' manually."
 fi
 
-# --- 3. Create and Configure Systemd Service ---
-echo "STEP 3: Creating systemd service file at /etc/systemd/system/inkcut-docker.service..."
+# --- 3. Download the docker image
+echo "STEP 4: Downloading the docker image"
+docker pull ghcr.io/christian2000/inkcut:latest
+
+# --- 4. Create and Configure Systemd Service ---
+echo "STEP 4: Creating systemd service file at /etc/systemd/system/inkcut-docker.service..."
 
 # Create the service file using a heredoc
 cat <<EOF > /etc/systemd/system/inkcut-docker.service
