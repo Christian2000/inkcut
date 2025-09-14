@@ -19,8 +19,16 @@ else
     echo "Docker is already installed. Skipping installation."
 fi
 
-usermod -aG docker $USER
-usermod -aG dialout $USER
+# Add the user who invoked sudo to the docker group.
+# This allows that user to manage Docker without sudo.
+# It does not affect the service, which runs as root.
+if [ -n "$SUDO_USER" ]; then
+    echo "Adding user '$SUDO_USER' to the 'docker' and 'dialout' groups..."
+    usermod -aG docker "$SUDO_USER"
+else
+    echo "Warning: No sudo user detected. Skipping adding user to docker group."
+    echo "You may need to run 'sudo usermod -aG docker <your-user>' manually."
+fi
 
 # --- 3. Create and Configure Systemd Service ---
 echo "STEP 3: Creating systemd service file at /etc/systemd/system/inkcut-docker.service..."
