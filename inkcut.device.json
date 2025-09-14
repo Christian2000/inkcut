@@ -14,9 +14,9 @@
           },
           {
             "name": "Makerspace Vevor",
-            "manufacturer": "Inkcut",
+            "manufacturer": "Vevor",
             "model": "Generic Driver",
-            "custom": true,
+            "custom": false,
             "area": {
               "py/reduce": [
                 "py/newobj",
@@ -31,7 +31,7 @@
                   "size": {
                     "py/object": "atom.catom.atomclist",
                     "py/seq": [
-                      0.0,
+                      3047.4,
                       900000.0
                     ]
                   },
@@ -150,7 +150,26 @@
                       },
                       {
                         "declaration": {
-                          "py/id": 22
+                          "py/reduce": [
+                            "py/newobj",
+                            {
+                              "py/tuple": [
+                                {
+                                  "py/type": "inkcut.device.extensions.DeviceProtocol"
+                                }
+                              ]
+                            },
+                            {
+                              "name": "HPGL",
+                              "id": "hpgl",
+                              "factory": {
+                                "py/function": "inkcut.device.protocols.manifest.hpgl_factory"
+                              },
+                              "config_view": {
+                                "py/function": "inkcut.device.protocols.manifest.hpgl_config_view"
+                              }
+                            }
+                          ]
                         },
                         "config": {
                           "py/reduce": [
@@ -231,6 +250,6 @@
     ]
   },
   "device": {
-    "py/id": 31
+    "py/id": 2
   }
 }
