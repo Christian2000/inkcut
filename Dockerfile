@@ -50,7 +50,6 @@ RUN echo "sv_SE.UTF-8 UTF-8" >> /etc/locale.gen && \
 
 # Download and install FileBrowser for the correct architecture
 ARG TARGETARCH
-RUN echo ${TARGETARCH}
 RUN case ${TARGETARCH} in \
         "arm") FB_ARCH="armv7";; \
         "arm64") FB_ARCH="arm64";; \

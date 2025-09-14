@@ -21,7 +21,8 @@ fi
 
 # Add the 'pi' user to the docker group so sudo is not required for docker commands.
 # This is for convenience when managing docker manually later.
-usermod -aG docker pi
+usermod -aG docker $USER
+usermod -aG dialout $USER
 
 # --- 3. Create and Configure Systemd Service ---
 echo "STEP 3: Creating systemd service file at /etc/systemd/system/inkcut-docker.service..."
