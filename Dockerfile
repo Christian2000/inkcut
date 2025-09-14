@@ -37,16 +37,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN echo "sv_SE.UTF-8 UTF-8" >> /etc/locale.gen && \
     locale-gen
 
+RUN pip3 install --upgrade pip setuptools wheel
+RUN pip3 install inkcut
+
 # Download and install FileBrowser for ARM64 (Raspberry Pi)
-RUN curl -fsSL https://github.com/filebrowser/filebrowser/releases/latest/download/linux-arm64-filebrowser.tar.gz \
+RUN curl -fsSL https://github.com/filebrowser/filebrowser/releases/latest/download/linux-armv7-filebrowser.tar.gz \
     | tar -C /usr/local/bin -xzv filebrowser
 
 # Clone noVNC and create an index.html that auto-connects
 RUN git clone https://github.com/novnc/noVNC.git /opt/novnc && \
     echo '<meta http-equiv="refresh" content="0; url=vnc.html?autoconnect=true&resize=remote">' > /opt/novnc/index.html
 
-RUN pip3 install --upgrade pip setuptools wheel
-RUN pip3 install inkcut
+RUN mkdir -p /root/.config/openbox/
+COPY rc.xml /root/.config/opnebox/rc.xml
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
