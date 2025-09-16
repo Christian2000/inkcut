@@ -10,5 +10,5 @@ openbox  > /proc/1/fd/1 2>/proc/1/fd/2 &
 while true
 do
   # Start the main application in the foreground
-  DISPLAY=:1 inkcut > /proc/1/fd/1 2>/proc/1/fd/2
+  HOME=/uploads XAUTHORITY=/root/.Xauthority DISPLAY=:1 inkcut > /proc/1/fd/1 2>/proc/1/fd/2
 done

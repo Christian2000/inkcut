@@ -79,5 +79,7 @@ COPY html/* /var/www/html/
 COPY inkcut.device.json /root/.config/inkcut/inkcut.device.json
 COPY inkcut.jobs.json /root/.config/inkcut/inkcut.jobs.json
 
+COPY QtProject.conf /root/.config/QtProject.conf
+
 EXPOSE 80
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
