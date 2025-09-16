@@ -60,12 +60,13 @@ RUN case ${TARGETARCH} in \
     | tar -C /usr/local/bin -xzv filebrowser
 
 
-# Clone noVNC and create an index.html that auto-connects
+# Clone noVNC and create an index.html that auto-connects and remove the novnc menu and info using css...
 RUN git clone https://github.com/novnc/noVNC.git /opt/novnc && \
-    echo '<meta http-equiv="refresh" content="0; url=vnc.html?autoconnect=true&resize=remote">' > /opt/novnc/index.html
+    echo '<meta http-equiv="refresh" content="0; url=vnc.html?autoconnect=true&resize=remote">' > /opt/novnc/index.html && \
+    sed -i '/<\/head>/i <style>#noVNC_control_bar, #noVNC_status { display: none !important; }</style>' /opt/novnc/vnc.html
 
 RUN mkdir -p /root/.config/openbox/
-COPY rc.xml /root/.config/opnebox/rc.xml
+COPY rc.xml /etc/xdg/openbox/rc.xml
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
@@ -77,7 +78,6 @@ COPY html/* /var/www/html/
 
 COPY inkcut.device.json /root/.config/inkcut/inkcut.device.json
 COPY inkcut.jobs.json /root/.config/inkcut/inkcut.jobs.json
-COPY QtProject.conf /root/.config/QtProject.conf
 
 EXPOSE 80
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

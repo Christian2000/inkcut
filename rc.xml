@@ -1,9 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- A minimal Openbox config that maximizes all application windows -->
+<!--
+  A KIOSK Openbox config.
+  This removes all menus, keybindings, and mouse actions from the desktop
+  to create a seamless, single-application experience.
+-->
 <openbox_config xmlns="http://openbox.org/3.4/rc">
+    <resistance>
+        <strength>10</strength>
+        <screen_edge_strength>20</screen_edge_strength>
+    </resistance>
+
+    <!-- No desktop menus -->
+    <menu>
+        <file></file>
+        <hideDelay>200</hideDelay>
+        <showIcons>no</showIcons>
+    </menu>
+
+    <!-- No desktop right-click or scroll actions -->
+    <mouse>
+        <context name="Desktop">
+        </context>
+    </mouse>
+
+    <!-- No keyboard shortcuts -->
+    <keyboard>
+    </keyboard>
+
+    <!-- The only rule: make any and all applications maximized -->
     <applications>
         <application class="*">
             <maximized>yes</maximized>
+            <decor>no</decor> <!-- This removes the title bar -->
         </application>
     </applications>
+
 </openbox_config>

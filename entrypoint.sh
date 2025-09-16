@@ -6,10 +6,10 @@ mkdir -p /root/Documents
 # Start FileBrowser on port 8080, managing the /root/Documents folder
 # This is the same folder you share with the Docker -v flag.
 
-filebrowser --address 0.0.0.0 --port 8080 --root /root/Documents --database /root/filebrowser.db --baseurl /upload --noauth&
+filebrowser --address 0.0.0.0 --port 8080 --root /root/Documents --database /root/filebrowser.db --baseurl /upload --noauth  > /proc/1/fd/1 2>/proc/1/fd/2 &
 
 # Start the noVNC WebSocket proxy in the background
-websockify --web /opt/novnc 6080 localhost:5901 &
+websockify --web /opt/novnc --idle-timeout=0 6080 localhost:5901 > /proc/1/fd/1 2>/proc/1/fd/2 &
 
 # Start TigerVNC in the FOREGROUND as the main process.
 # It will run our custom xstartup.sh script internally.
