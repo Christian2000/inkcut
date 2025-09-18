@@ -46,10 +46,11 @@ After=docker.service
 [Service]
 Restart=always
 RestartSec=10
+TimeoutStartSec=300
 
 # Clean up previous container instances
-ExecStartPre=-/usr/bin/docker stop inkcut-container
-ExecStartPre=-/usr/bin/docker rm inkcut-container
+ExecStartPre=-/usr/bin/docker stop inkcut-container || true
+ExecStartPre=-/usr/bin/docker rm inkcut-container || true
 
 # Pull the latest image - uncomment the last line to automatically update on startup.
 # This is NOT recommended since startup then takes a long time.
