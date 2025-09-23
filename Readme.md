@@ -8,6 +8,10 @@ On a fresh Raspberry Pi, run the following command. This will download and execu
 
     curl -sSL https://raw.githubusercontent.com/christian2000/inkcut/main/setup.sh | sudo bash
 
+this command can also be used to update both the raspberry pi and the docker image.
+
+After this is done, the application can be reached on port 80 on the raspberry pi.
+
 What This Does
 ---
 The setup script performs the following actions:
@@ -23,25 +27,18 @@ The setup script performs the following actions:
 
 Updating to the latest image version
 ---
-The image version is defined in /etc/systemd/system/inkcut-docker.service
+To update to the latest version from github, run
 
-To change version, edit the line ExecStart=/usr/bin/docker run --name inkcut-container --privileged -p 80:80 ghcr.io/christian2000/inkcut:latest
+    curl -sSL https://raw.githubusercontent.com/christian2000/inkcut/main/setup.sh | sudo bash
 
-and change latest to the image tag you want to use. Then run
+this is the same command used for first time installation and will also update the software on the pi itself.
 
-   sudo systemctl daemon-reload
+N.B. This will overwrite any changes to the definition of the inkcut-docker service. This is probably what you want.
 
-and
+If you do not want to update the service definition or update the pi, run
 
+   docker pull ghcr.io/christian2000/inkcut:latest
    sudo systemctl restart inkcut-docker.service
-
-To simply update to a newer "latest" tag, run
-
-   sudo docker pull ghcr.io/christian2000/inkcut:latest
-
-and wait patiently.
-
-Automatic updates on startup is disabled by default due to the increased startup time.
 
 Accessing the Application
 ---
